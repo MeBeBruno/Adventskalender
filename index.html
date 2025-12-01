@@ -1,0 +1,26 @@
+<script>
+addEventListener("DOMContentLoaded", () => {
+	const today = new Date();
+	const threshold = new Date(2025, 11, 1); // 1. Dezember 2025 (Monat 11 = Dezember)
+
+	// Nur weiterleiten, wenn Datum ab 01.12.2025 ist
+	if (today >= threshold) {
+		const year = today.getFullYear();
+		const month = today.getMonth(); // 0 = Januar, 11 = Dezember
+		let day = today.getDate();
+
+		let targetDay;
+
+		// 01.–24.12.2025: jeweilige Tagesseite, alles andere: 24
+		if (year === 2025 && month === 11 && day >= 1 && day <= 24) {
+			targetDay = day;
+		} else {
+			targetDay = 24;
+		}
+
+		const file_name = `${targetDay}-dezember.html`;
+		window.location.replace(file_name);
+		document.body.innerHTML = `<a href="${file_name}">Klicke hier, wenn du nicht weitergeleitet wirst!</a>`;
+	}
+});
+</script>
